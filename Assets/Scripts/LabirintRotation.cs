@@ -13,4 +13,9 @@ public class LabirintRotation : MonoBehaviour
 
         transform.Rotate(Vector3.forward * horizontalInput * _rotationSpeed * Time.fixedDeltaTime);
     }
+
+    public void ApplySwipeRotation(float direction)
+    {
+        transform.Rotate(Vector3.forward * direction * _rotationSpeed * Time.deltaTime);
+    }
 }
