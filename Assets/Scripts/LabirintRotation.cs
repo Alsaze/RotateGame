@@ -5,12 +5,30 @@ using UnityEngine;
 
 public class LabirintRotation : MonoBehaviour
 {
-    private float _rotationSpeed=50;
+    private float _rotationSpeed = 50;
 
-    private void FixedUpdate() 
+    private void FixedUpdate()
     {
-        float horizontalInput = Input.GetAxis("Horizontal");
+        if (Input.GetKey(KeyCode.D))
+        {
+            RightRotate();   
+        }
 
-        transform.Rotate(Vector3.forward * horizontalInput * _rotationSpeed * Time.fixedDeltaTime);
+        if (Input.GetKey(KeyCode.A))
+        {
+            LeftRotate();
+        }
+    }
+
+    public void RightRotate()
+    {
+        Debug.Log("RightButton");
+        transform.Rotate(Vector3.forward  * _rotationSpeed * Time.fixedDeltaTime);
+    }
+
+    public void LeftRotate()
+    {
+        Debug.Log("LeftButton");
+        transform.Rotate(-Vector3.forward  * _rotationSpeed * Time.fixedDeltaTime);
     }
 }

@@ -2,37 +2,45 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class Player : MonoBehaviour
 {
     [SerializeField] private GameObject open;
 
     [SerializeField] private GameObject player;
-    [SerializeField] private GameObject teleport;
+    [SerializeField] private GameObject teleportOut;
+
+    [SerializeField] private GameObject gameManager;
+    private GameManager _gameManager;
+    private void Start()
+    {
+        _gameManager = gameManager.GetComponent<GameManager>();
+    }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "Win")
         {
-            Debug.Log("You win!!");
+            _gameManager.Win();
         }
 
-        if (collision.gameObject.tag == "Lose")
+        else if (collision.gameObject.tag == "Lose")
         {
-            Debug.Log("You Lose!!");
+            _gameManager.Lose();
         }
 
-        if (collision.gameObject.tag == "Open")
+        else if (collision.gameObject.tag == "Open")
         {
             Debug.Log("Open");
             Destroy(open);
         }
 
-        if (collision.gameObject.tag == "Teleport")
+        else if (collision.gameObject.tag == "Teleport")
         {
             Debug.Log("Teleport");
-            Vector3 vector3Teleport = teleport.transform.position;
-            player.transform.position = vector3Teleport;
+            Vector3 teleportPosition = teleportOut.transform.position;
+            player.transform.position = teleportPosition;
         }
     }
 }
