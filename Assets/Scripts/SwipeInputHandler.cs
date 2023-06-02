@@ -14,7 +14,7 @@ public class SwipeInputHandler : MonoBehaviour,  IDragHandler, IEndDragHandler
     {
         _isRotating = true;
 
-        _direction = Mathf.Clamp(eventData.delta.x, -1, 1);
+        _direction = Mathf.Clamp(eventData.delta.y, -1, 1);
     }
 
     public void OnEndDrag(PointerEventData eventData)
